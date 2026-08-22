@@ -73,60 +73,94 @@
 </div>
 </section>
 
-<section id="projects" class="section reveal">
-<p class="eyebrow">03 / PROJECTS</p><h2>Things I'm building.</h2>
-
-<div class="featured-project glass">
-  <div class="project-top">
+<section id="projects" class="section reveal liquid-projects">
+  <div class="projects-heading">
     <div>
-      <p class="tag">WEB APP • FULL STACK • QR ATTENDANCE</p>
-      <h3>QR-Based Student Attendance Management System</h3>
-      <p class="project-lead">A complete web-based attendance platform designed to make student attendance fast, secure and easy to manage using temporary QR codes.</p>
+      <p class="eyebrow">03 / PROJECTS</p>
+      <h2>Things I'm <span>building.</span></h2>
+      <p class="projects-intro">A collection of projects that reflect my learning, experimentation and problem solving skills.</p>
     </div>
-    <span class="project-number">01</span>
-  </div>
-
-  <div class="project-grid">
-    <div class="project-block">
-      <span class="project-label">OVERVIEW</span>
-      <p>The system allows authorized users to manage students, generate and scan QR codes, record attendance and view attendance history through a responsive Liquid Glass interface.</p>
-    </div>
-
-    <div class="project-block">
-      <span class="project-label">KEY FEATURES</span>
-      <ul class="feature-list">
-        <li>Role-based authentication and access control</li>
-        <li>Temporary QR generation with expiry</li>
-        <li>QR scanning with session validation</li>
-        <li>Duplicate-scan prevention</li>
-        <li>Live attendance count and history</li>
-        <li>Reports and attendance analytics</li>
-        <li>Responsive UI with smooth animations</li>
-        <li>Input validation and security checks</li>
-      </ul>
+    <div class="project-filters" aria-label="Project categories">
+      <button class="project-filter active" type="button">All</button>
+      <button class="project-filter" type="button">Web Tools</button>
+      <button class="project-filter" type="button">AI / ML</button>
+      <button class="project-filter" type="button">Others</button>
     </div>
   </div>
 
-  <div class="project-bottom">
-    <div>
-      <span class="project-label">TECHNOLOGY</span>
-      <div class="stack project-stack">
-        <b>HTML5</b><b>CSS3</b><b>JavaScript</b><b>PHP</b><b>MySQL</b><b>QR</b><b>Liquid Glass UI</b>
+  <div class="featured-project liquid-card">
+    <div class="featured-copy">
+      <div class="featured-label">★ FEATURED PROJECT</div>
+      <div class="project-title-row">
+        <span class="project-number">01</span>
+        <div>
+          <p class="tag">WEB • PHP • MYSQL</p>
+          <h3>QR-Based Student Attendance Management System</h3>
+        </div>
+      </div>
+      <p class="featured-description">A complete web application that uses QR codes to mark and manage student attendance efficiently.</p>
+
+      <div class="feature-list">
+        <span>✓ QR Generation</span><span>✓ QR Scanning</span><span>✓ Session Validation</span>
+        <span>✓ Attendance Reports</span><span>✓ Analytics</span><span>✓ Duplicate Prevention</span>
+        <span>✓ Authentication</span><span>✓ Responsive UI</span>
+      </div>
+
+      <div class="tech-label">Tech Stack</div>
+      <div class="stack liquid-stack">
+        <b>HTML</b><b>CSS</b><b>JavaScript</b><b>PHP</b><b>MySQL</b><b>QR</b>
+      </div>
+
+      <div class="project-actions">
+        <a class="liquid-action secondary" href="https://github.com/vanshdixit-1207" target="_blank" rel="noopener">GitHub ↗</a>
+        <a class="liquid-action primary" href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID" target="_blank" rel="noopener">▶ Watch Demo</a>
       </div>
     </div>
 
-    <div class="project-links">
-      <a class="project-link" href="https://github.com/vanshdixit-1207" target="_blank" rel="noopener">GitHub ↗</a>
-      <!-- Replace # with your YouTube project-video URL later. -->
-      <a class="project-link youtube-link" href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID" target="_blank" rel="noopener" aria-label="YouTube project video">YouTube ↗</a>
+    <div class="featured-visual">
+      <div class="visual-glow"></div>
+      <div class="preview-frame">
+        <img src="qr-attendance-preview.png" alt="Project preview" class="project-preview">
+      </div>
     </div>
   </div>
-</div>
 
-<div class="project-note">
-  <span>01</span>
-  <p>Built as a practical full-stack project with a focus on real-world attendance management.</p>
-</div>
+  <div class="project-grid">
+    <article class="mini-project liquid-card">
+      <div class="mini-top"><span>02</span><span class="mini-arrow">↗</span></div>
+      <div>
+        <h3>Developer Utility Projects</h3>
+        <p>A set of practical browser-based tools built to solve everyday developer problems.</p>
+      </div>
+      <div class="stack liquid-stack"><b>HTML</b><b>CSS</b><b>JavaScript</b></div>
+      <a href="https://github.com/vanshdixit-1207" target="_blank" rel="noopener">GitHub ↗</a>
+    </article>
+
+    <article class="mini-project liquid-card">
+      <div class="mini-top"><span>03</span><span class="mini-arrow">↗</span></div>
+      <div>
+        <h3>AI/ML Learning Projects</h3>
+        <p>A growing collection of Python experiments and machine-learning projects.</p>
+      </div>
+      <div class="stack liquid-stack"><b>Python</b><b>NumPy</b><b>ML</b></div>
+      <a href="https://github.com/vanshdixit-1207" target="_blank" rel="noopener">GitHub ↗</a>
+    </article>
+
+    <article class="mini-project liquid-card">
+      <div class="mini-top"><span>04</span><span class="mini-arrow">↗</span></div>
+      <div>
+        <h3>Personal Developer Portfolio</h3>
+        <p>This website — designed as a professional home for my projects, skills and learning journey.</p>
+      </div>
+      <div class="stack liquid-stack"><b>HTML</b><b>CSS</b><b>Responsive UI</b></div>
+      <a href="https://github.com/vanshdixit-1207" target="_blank" rel="noopener">Source ↗</a>
+    </article>
+  </div>
+
+  <div class="projects-footer liquid-card">
+    <div><strong>More projects and experiments coming soon...</strong><span>Always learning. Always building.</span></div>
+    <a class="liquid-action secondary" href="https://github.com/vanshdixit-1207" target="_blank" rel="noopener">Explore GitHub ↗</a>
+  </div>
 </section>
 
 <section id="contact" class="contact reveal">
@@ -134,7 +168,7 @@
 <div class="contact-links">
 <a class="glass-btn" href="https://github.com/vanshdixit-1207">GitHub ↗</a>
 <a class="glass-btn" href="https://www.linkedin.com/in/vansh-dixit-86242542">LinkedIn ↗</a>
-<a class="glass-btn" href="mailto:vanshdixit1207@gmail.com">Email ↗</a>
+<a class="glass-btn" href="mailto:vanshdixit1207@gmail.com">vanshdixit1207@gmail.com ↗</a>
 </div>
 </section>
 </main>
