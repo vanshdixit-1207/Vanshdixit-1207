@@ -86,3 +86,136 @@
 @media (prefers-reduced-motion:reduce){
   .cursor-glow,.cursor-trail{display:none}
 }
+
+
+/* Premium ambient motion system */
+:root{
+  --mouse-x:50%;
+  --mouse-y:50%;
+}
+body{
+  background:
+    radial-gradient(600px circle at var(--mouse-x) var(--mouse-y),
+      rgba(58,120,255,.07), transparent 52%),
+    radial-gradient(500px circle at 85% 15%, rgba(170,70,255,.055), transparent 60%),
+    #050910;
+}
+.ambient-grid{
+  position:fixed;
+  inset:0;
+  z-index:-3;
+  pointer-events:none;
+  opacity:.22;
+  background-image:
+    linear-gradient(rgba(100,165,255,.045) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(100,165,255,.045) 1px,transparent 1px);
+  background-size:52px 52px;
+  mask-image:radial-gradient(circle at center,black 0%,transparent 78%);
+  -webkit-mask-image:radial-gradient(circle at center,black 0%,transparent 78%);
+  animation:gridDrift 18s linear infinite;
+}
+.ambient-stars{
+  position:fixed;
+  inset:0;
+  z-index:-2;
+  pointer-events:none;
+  opacity:.45;
+  background-image:
+    radial-gradient(circle at 18% 24%,rgba(100,165,255,.8) 0 1px,transparent 1.5px),
+    radial-gradient(circle at 72% 18%,rgba(180,100,255,.7) 0 1px,transparent 1.5px),
+    radial-gradient(circle at 42% 68%,rgba(90,210,255,.6) 0 1px,transparent 1.5px),
+    radial-gradient(circle at 86% 76%,rgba(255,100,220,.55) 0 1px,transparent 1.5px),
+    radial-gradient(circle at 12% 82%,rgba(120,120,255,.55) 0 1px,transparent 1.5px);
+  background-size:240px 220px,310px 280px,360px 320px,290px 260px,420px 380px;
+  animation:starsFloat 14s ease-in-out infinite alternate;
+}
+.ambient-orb{
+  position:fixed;
+  width:280px;
+  height:280px;
+  border-radius:50%;
+  pointer-events:none;
+  z-index:-2;
+  filter:blur(80px);
+  opacity:.12;
+}
+.orb-one{
+  top:18%;
+  left:10%;
+  background:#267dff;
+  animation:orbFloat 11s ease-in-out infinite alternate;
+}
+.orb-two{
+  right:8%;
+  bottom:14%;
+  background:#a855f7;
+  animation:orbFloat 13s ease-in-out infinite alternate-reverse;
+}
+.project.glass,.cards article.glass,.profile-card{
+  --mx:50%;
+  --my:50%;
+  --rx:0deg;
+  --ry:0deg;
+  position:relative;
+  overflow:hidden;
+  transform:perspective(900px) rotateX(var(--rx)) rotateY(var(--ry)) translateY(0);
+  transition:transform .18s ease,border-color .35s ease,box-shadow .35s ease;
+}
+.project.glass::before,.cards article.glass::before,.profile-card::before{
+  content:"";
+  position:absolute;
+  inset:-1px;
+  pointer-events:none;
+  opacity:0;
+  background:radial-gradient(260px circle at var(--mx) var(--my),rgba(100,165,255,.22),transparent 68%);
+  transition:opacity .25s ease;
+}
+.project.glass::after,.cards article.glass::after,.profile-card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  border-radius:inherit;
+  background:linear-gradient(115deg,transparent 20%,rgba(255,255,255,.055) 45%,transparent 58%);
+  transform:translateX(-120%);
+  animation:glassSweep 7s ease-in-out infinite;
+}
+.project.glass:hover,.cards article.glass:hover,.profile-card:hover{
+  box-shadow:0 28px 90px rgba(40,110,255,.16),0 0 45px rgba(110,70,255,.08),inset 0 1px rgba(255,255,255,.08);
+  border-color:rgba(100,165,255,.48);
+}
+.project.glass:hover::before,.cards article.glass:hover::before,.profile-card:hover::before{opacity:1}
+.project.glass>* ,.cards article.glass>* ,.profile-card>*{position:relative;z-index:1}
+.project.glass>a,.glass-btn{
+  transition:transform .25s ease,box-shadow .3s ease,border-color .3s ease;
+}
+.project.glass>a:hover,.glass-btn:hover{
+  box-shadow:0 0 24px rgba(90,150,255,.16);
+}
+@keyframes gridDrift{
+  from{transform:translate3d(0,0,0)}
+  to{transform:translate3d(26px,18px,0)}
+}
+@keyframes starsFloat{
+  from{transform:translate3d(0,0,0);opacity:.28}
+  to{transform:translate3d(-18px,-12px,0);opacity:.55}
+}
+@keyframes orbFloat{
+  from{transform:translate3d(-15px,8px,0) scale(.92)}
+  to{transform:translate3d(28px,-25px,0) scale(1.08)}
+}
+@keyframes glassSweep{
+  0%,55%{transform:translateX(-120%)}
+  75%,100%{transform:translateX(120%)}
+}
+@media (hover:none),(pointer:coarse){
+  .project.glass,.cards article.glass,.profile-card{
+    transform:none!important;
+  }
+}
+@media (prefers-reduced-motion:reduce){
+  .ambient-grid,.ambient-stars,.ambient-orb,
+  .project.glass::after,.cards article.glass::after,.profile-card::after{
+    animation:none!important;
+  }
+}

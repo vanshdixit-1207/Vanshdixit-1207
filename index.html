@@ -9,6 +9,12 @@
 </head>
 <body>
 
+<div class="ambient-orb orb-one" aria-hidden="true"></div>
+<div class="ambient-orb orb-two" aria-hidden="true"></div>
+<div class="ambient-grid" aria-hidden="true"></div>
+<div class="ambient-stars" aria-hidden="true"></div>
+
+
 <div class="cursor-glow" aria-hidden="true"></div>
 <div class="cursor-trail" aria-hidden="true"></div>
 
@@ -128,7 +134,7 @@
 <div class="contact-links">
 <a class="glass-btn" href="https://github.com/vanshdixit-1207">GitHub ↗</a>
 <a class="glass-btn" href="https://www.linkedin.com/in/vansh-dixit-86242542">LinkedIn ↗</a>
-<a class="glass-btn" href="mailto:vanshdixit1207@gmail.com">Email ↗</a>
+<a class="glass-btn" href="mailto:vanshdixit1207@gmail.com">vanshdixit1207@gmail.com ↗</a>
 </div>
 </section>
 </main>
@@ -188,6 +194,53 @@ items.forEach(i=>observer.observe(i));
     requestAnimationFrame(animate);
   };
   animate();
+})();
+</script>
+
+
+<script>
+(() => {
+  const root = document.documentElement;
+  const cards = document.querySelectorAll('.project.glass, .cards article.glass, .profile-card');
+  const fine = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+  const reduced = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  if (!fine || reduced) return;
+
+  cards.forEach(card => {
+    card.addEventListener('pointermove', e => {
+      const r = card.getBoundingClientRect();
+      const px = (e.clientX - r.left) / r.width;
+      const py = (e.clientY - r.top) / r.height;
+      const rx = (0.5 - py) * 5;
+      const ry = (px - 0.5) * 5;
+      card.style.setProperty('--mx', `${px * 100}%`);
+      card.style.setProperty('--my', `${py * 100}%`);
+      card.style.setProperty('--rx', `${rx}deg`);
+      card.style.setProperty('--ry', `${ry}deg`);
+    });
+    card.addEventListener('pointerleave', () => {
+      card.style.setProperty('--mx', '50%');
+      card.style.setProperty('--my', '50%');
+      card.style.setProperty('--rx', '0deg');
+      card.style.setProperty('--ry', '0deg');
+    });
+  });
+
+  let lx = 50, ly = 50, tx = 50, ty = 50;
+  window.addEventListener('pointermove', e => {
+    tx = (e.clientX / window.innerWidth) * 100;
+    ty = (e.clientY / window.innerHeight) * 100;
+  }, {passive:true});
+
+  const tick = () => {
+    lx += (tx - lx) * 0.045;
+    ly += (ty - ly) * 0.045;
+    root.style.setProperty('--mouse-x', lx + '%');
+    root.style.setProperty('--mouse-y', ly + '%');
+    requestAnimationFrame(tick);
+  };
+  tick();
 })();
 </script>
 
