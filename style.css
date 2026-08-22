@@ -35,3 +35,54 @@
   .feature-list{grid-template-columns:1fr;font-size:12px}
   .project-link{flex:1;justify-content:center}
 }
+
+
+/* Cursor-following neon glow + particle trail */
+.cursor-glow{
+  position:fixed;
+  left:0;
+  top:0;
+  width:180px;
+  height:180px;
+  border-radius:50%;
+  pointer-events:none;
+  z-index:9999;
+  opacity:0;
+  background:
+    radial-gradient(circle at 50% 50%,
+      rgba(100,165,255,.24) 0%,
+      rgba(139,92,246,.13) 30%,
+      rgba(255,70,210,.07) 48%,
+      transparent 72%);
+  filter:blur(2px);
+  transition:opacity:.25s ease;
+  mix-blend-mode:screen;
+}
+.cursor-glow.active{opacity:1}
+.cursor-trail{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:9998;
+  overflow:hidden;
+}
+.cursor-particle{
+  position:absolute;
+  width:5px;
+  height:5px;
+  margin:-2.5px 0 0 -2.5px;
+  border-radius:50%;
+  background:hsl(var(--h),90%,72%);
+  box-shadow:0 0 12px hsl(var(--h),100%,68%),0 0 24px hsl(var(--h),100%,60%);
+  animation:cursorParticle .65s ease-out forwards;
+}
+@keyframes cursorParticle{
+  0%{opacity:.95;transform:translate3d(0,0,0) scale(1)}
+  100%{opacity:0;transform:translate3d(var(--dx),var(--dy),0) scale(.05)}
+}
+@media (hover:none),(pointer:coarse){
+  .cursor-glow,.cursor-trail{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .cursor-glow,.cursor-trail{display:none}
+}

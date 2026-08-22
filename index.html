@@ -8,6 +8,10 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+<div class="cursor-glow" aria-hidden="true"></div>
+<div class="cursor-trail" aria-hidden="true"></div>
+
 <div class="glow glow-a"></div><div class="glow glow-b"></div>
 
 <header class="nav glass">
@@ -18,7 +22,7 @@
   <div class="nav-actions">
     <a class="glass-btn" href="https://github.com/vanshdixit-1207">GitHub ↗</a>
     <a class="glass-btn" href="https://www.linkedin.com/in/vansh-dixit-86242542">LinkedIn ↗</a>
-    <a class="glass-btn" href="mailto:vanshdixit1207@gmail.com">Email↗</a>
+    <a class="glass-btn" href="mailto:vanshdixit1207@gmail.com">Email ↗</a>
   </div>
 </header>
 
@@ -124,7 +128,7 @@
 <div class="contact-links">
 <a class="glass-btn" href="https://github.com/vanshdixit-1207">GitHub ↗</a>
 <a class="glass-btn" href="https://www.linkedin.com/in/vansh-dixit-86242542">LinkedIn ↗</a>
-<a class="glass-btn" href="mailto:vanshdixit1207@gmail.com">Email ↗</a>
+<a class="glass-btn" href="mailto:vanshdixit1207@gmail.com">vanshdixit1207@gmail.com ↗</a>
 </div>
 </section>
 </main>
@@ -134,5 +138,58 @@ const items=document.querySelectorAll('.reveal');
 const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')}),{threshold:.12});
 items.forEach(i=>observer.observe(i));
 </script>
+
+<script>
+(() => {
+  const glow = document.querySelector('.cursor-glow');
+  const trail = document.querySelector('.cursor-trail');
+  if (!glow || !trail) return;
+
+  const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  if (!finePointer.matches || reducedMotion.matches) return;
+
+  let x = window.innerWidth / 2;
+  let y = window.innerHeight / 2;
+  let tx = x;
+  let ty = y;
+  let lastParticle = 0;
+
+  const move = (e) => {
+    tx = e.clientX;
+    ty = e.clientY;
+    glow.classList.add('active');
+
+    const now = performance.now();
+    if (now - lastParticle > 32) {
+      const p = document.createElement('span');
+      p.className = 'cursor-particle';
+      p.style.left = tx + 'px';
+      p.style.top = ty + 'px';
+      p.style.setProperty('--dx', ((Math.random() - 0.5) * 34) + 'px');
+      p.style.setProperty('--dy', ((Math.random() - 0.5) * 34) + 'px');
+      p.style.setProperty('--h', (Math.random() * 80 + 190) + 'deg');
+      trail.appendChild(p);
+      setTimeout(() => p.remove(), 650);
+      lastParticle = now;
+    }
+  };
+
+  const leave = () => glow.classList.remove('active');
+
+  window.addEventListener('pointermove', move, { passive: true });
+  window.addEventListener('pointerleave', leave, { passive: true });
+
+  const animate = () => {
+    x += (tx - x) * 0.18;
+    y += (ty - y) * 0.18;
+    glow.style.transform = `translate3d(${x - 90}px, ${y - 90}px, 0)`;
+    requestAnimationFrame(animate);
+  };
+  animate();
+})();
+</script>
+
 </body>
 </html>
