@@ -1,14 +1,15 @@
-# Vansh Dixit — Portfolio
+# Vansh Dixit — Liquid Glass Portfolio
 
-Personal portfolio for **Vansh Dixit**, BCA student focused on AI/ML and software development.
+A responsive single-page portfolio for Vansh Dixit with a dark liquid-glass / glassmorphism visual system.
 
-## Tech
-- HTML
-- CSS
-- Responsive design
+## Included
+- Responsive layout
+- Liquid glass cards and project showcase
+- Scroll reveal animations
+- Cursor-following glow and particle trail on desktop
+- Project category filters
+- Vansh Dixit's photo and QR Attendance project preview
+- GitHub, LinkedIn and email links
 
-## Live domain
-https://vanshdixit.in
-
-## GitHub
-https://github.com/vanshdixit-1207
+## Run
+Open `index.html` directly, or serve the folder with any static web server.
